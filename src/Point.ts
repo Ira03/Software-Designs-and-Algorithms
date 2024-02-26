@@ -13,10 +13,7 @@ export class Point {
     return `(${this.x}, ${this.y})`;
   }
 
-  distance(): number;
-  distance(point: Point):number;
-  distance(x:number, y:number):number;
-  distance(...args) {
+  distance(...args: [Point] | [number, number] | []): number {
     let x;
     let y;
 

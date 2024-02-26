@@ -25,7 +25,7 @@ export abstract class Shape {
   }
 
   protected printPoints() {
-    return this.points.map(point => point.toString()).join(', ');
+    return this.points.join(', ');
   }
 
   protected printFilled() {
