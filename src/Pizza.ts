@@ -1,14 +1,15 @@
+import { Consumable } from "./Consumable";
 import { Item } from "./Item";
 
-export class Pizza extends Item {
+export class Pizza extends Consumable {
   readonly  numberOfSlices: number;
   protected numberOfEatenSlices: number = 0;
-  protected isSpoiled: boolean;
+  _isSpoiled: boolean;
 
 
   constructor(value: number, weight: number, isSpoiled: boolean, numberOfSlices: number) {
     super('pizza', value, weight);
-    this.isSpoiled = isSpoiled;
+    this._isSpoiled = isSpoiled;
     this.numberOfSlices = numberOfSlices;
   }
 
@@ -17,14 +18,12 @@ export class Pizza extends Item {
   }
 
   use() {
-    let message;
     if (this.numberOfEatenSlices >= this.numberOfSlices) {
-      message = "There's nothing left of the pizza to consume."
+      this.isConsumed = true;
+      return super.use();
     } else {
       this.numberOfEatenSlices++;
-      message = "You consumed a slice of the pizza."
+      return "You consumed a slice of the pizza."
     }
-
-    return message;
   }
 }

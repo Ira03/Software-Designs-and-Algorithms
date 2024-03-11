@@ -3,7 +3,7 @@ import { Item } from "./Item";
 
 export abstract class Consumable extends Item {
   isConsumed = false;
-  private _isSpoiled?: boolean;
+  _isSpoiled?: boolean;
 
   constructor(name: string, value: number, weight: number, isSpoiled: boolean = false) {
     super(name, value, weight);

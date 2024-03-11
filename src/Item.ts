@@ -1,8 +1,8 @@
 import { Comparable } from './Comparable';
 
 export abstract class Item implements Comparable<Item>{
-  private id: number;
-  name: string;
+ readonly id: number;
+ readonly name: string;
   weight: number;
   value: number;
 
@@ -16,16 +16,11 @@ export abstract class Item implements Comparable<Item>{
     this.name = name;
     this.value = value;
     this.weight = weight;
-    this.assignId();
-
+    this.id = Item.idCounter++
   }
 
   getId() {
     return this.id;
-  }
-
-  protected assignId() {
-    this.id = Item.idCounter++;
   }
 
   compareTo(other: Item) {
@@ -33,10 +28,8 @@ export abstract class Item implements Comparable<Item>{
       return 1;
     } else if (this.value < other.value) {
       return -1;
-    } else if (this.name.toLowerCase() > other.name.toLowerCase() ) {
-      return 1;
-    } else if (this.name.toLowerCase() < other.name.toLowerCase() ) {
-      return -1;
+    } else if (this.value === other.value) {
+        return this.name.localeCompare(other.name, "en", { sensitivity: "base" });
     }
     return 0;
   }

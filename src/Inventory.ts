@@ -13,7 +13,7 @@ export class Inventory {
     if (comparator) {
       this.items.sort((a, b) => comparator.compare(a, b));
     } else {
-      this.items.sort((a, b) => a.value - b.value);
+      this.items.sort((a, b) => a.compareTo(b));
     }
   }
 

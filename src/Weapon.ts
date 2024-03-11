@@ -1,10 +1,10 @@
 import { Item } from "./Item";
 
 export class Weapon extends Item {
-  protected baseDamage: number;
-  protected damageModifier: number = 0;
+  private baseDamage: number;
+  private damageModifier: number = 0;
   protected baseDurability: number;
-  protected durabilityModifier: number = 0;
+  private durabilityModifier: number = 0;
   protected effectiveDurability: number;
   protected isBroken: boolean = false;
 
@@ -15,6 +15,26 @@ export class Weapon extends Item {
     this.baseDamage = baseDamage;
     this.baseDurability = baseDurability;
     this.effectiveDurability = this.getEffectiveDurability();
+  }
+
+  getMaxDamage(value: number):number {
+    return this.baseDamage * value;
+  }
+
+  updateDamageModifier() {
+    this.damageModifier += Weapon.MODIFIER_CHANGE_RATE;
+  }
+
+  updateDurabilityModifier() {
+    this.durabilityModifier += Weapon.MODIFIER_CHANGE_RATE
+  }
+
+  getFullDamage() {
+    return this.damageModifier + Weapon.MODIFIER_CHANGE_RATE;
+  }
+
+  getFullDurability() {
+    return this.durabilityModifier + Weapon.MODIFIER_CHANGE_RATE;
   }
 
   getEffectiveDamage() {
